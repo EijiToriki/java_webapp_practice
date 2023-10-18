@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+body {
+	font-family: BIZ UDPゴシック;
+	background-color: #EEEEEE;
+	text-align: center;
+}
+
+h1 {
+	font-size: 32px;
+    color: #111111;
+}
+
+h2 {
+	font-size: 28px;
+    background-color: #111111;
+    color: white;
+}
+
+hr{
+	border: 0;
+	border-top: 1px solid rgb(3, 0, 106);
+}
