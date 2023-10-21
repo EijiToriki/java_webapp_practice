@@ -1,0 +1,52 @@
+@charset "UTF-8";
+
+body {
+	font-family: BIZ UDPゴシック;
+	background-color: #EEEEEE;
+	text-align: center;
+}
+
+h1 {
+	font-size: 32px;
+    color: #111111;
+}
+
+h2 {
+	font-size: 28px;
+    background-color: #111111;
+    color: white;
+}
+
+hr{
+	border: 0;
+	border-top: 1px solid rgb(3, 0, 106);
+}
+
+.error-msg{
+	color: red;
+}
+
+table{
+	border: 1px solid rgb(128, 128, 0);
+	margin-left: auto;
+	margin-right: auto;
+	width:80%;
+	border-collapse: collapse;
+}
+
+th{
+	border: 1px solid rgb(128, 128, 0);
+	text-align: center;
+	background-color: lightgray;
+	height: 32px;
+}
+
+td{
+	border: 1px solid rgb(128, 128, 0);
+	text-align: center;
+	height: 32px;
+}
+
+.select-list{
+	background-color: ghostwhite;
+}
