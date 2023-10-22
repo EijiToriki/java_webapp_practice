@@ -54,6 +54,40 @@ public class Operation {
 	public void logoutProc(HttpSession session) {
 		session.invalidate();
 	}
+	
+	public void addProd(int idx, HttpSession session) {
+		Store store = (Store) session.getAttribute("store");
+		Cart cart = (Cart) session.getAttribute("cart");
+		
+		if((store != null) || (cart != null)) {
+			cart.add(store.getProductList().get(idx));
+			
+			session.setAttribute("cart", cart);
+		}
+	}
+
+	public void removeProd(int idx, HttpSession session) {
+		Cart cart = (Cart) session.getAttribute("cart");
+		
+		if(cart != null) {
+			cart.remove(idx);
+			
+			session.setAttribute("cart", cart);
+		}
+	}
+	
+	public void pay(HttpSession session) {
+		Cart cart = (Cart) session.getAttribute("cart");
+
+		
+		if(cart != null) {
+			session.setAttribute("pay", cart);
+			
+			Cart newCart = new Cart(cart.getUserId(), new ArrayList<Product>());
+			session.setAttribute("cart", newCart);
+		}
+		
+	}
 
 }
 

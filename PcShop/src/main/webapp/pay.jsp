@@ -11,42 +11,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>カート画面</title>
+<title>精算完了</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<%@include file = "header-navi.jsp" %>
 	
-	<h2>カート内一覧</h2>
+	<h2>精算完了</h2>
+	<p>お買い上げありがとうございました。</p>
 	
 	<%
 		List<Product> product_list;
-		Cart cart = (Cart) session.getAttribute("cart");
-		if(cart == null){
+		Cart payData = (Cart) session.getAttribute("pay");
+		if(payData == null){
 			product_list = new ArrayList<Product>();
 		}else{
-			product_list = cart.getProductList();
+			product_list = payData.getProductList();
 		}
 		
 		if(product_list.size() > 0){
 	%>
 	
-			<table class="cart-list">
+			<table class="pay-list">
 			<tr>
-				<th></th><th>商品ID</th><th>商品名</th><th>価格</th>
+				<th>商品ID</th><th>商品名</th><th>価格</th>
 			</tr>
 			
 		<%
-			for(int idx=0; idx < product_list.size(); idx++){
-				Product prod = product_list.get(idx);
+			for(Product prod : product_list){
 		%>
 				<tr>
-					<td>
-						<form action="remove-prod-servlet" method="POST">
-							<input type="hidden" name="idx" value="<%=idx%>">
-							<input type="submit" value="削除">
-						</form>
-					</td>
 					<td><%=prod.getId() %></td>
 					<td><%=prod.getName() %></td>
 					<td><%=prod.getPriceString() %></td>
@@ -55,11 +49,9 @@
 				}
 			%>			
 			</table>
-			<br>
-			<form action="pay-servlet" method="POST">
-				<input type="submit" value="精算"><br>
-			</form>
+			<p>合計：<%=payData.getStringTotalPrice() %>になります。</p>
 	<%
+			session.removeAttribute("pay");	
 		}else{
 	%>
 			<p>カートの仲は空です。</p>
